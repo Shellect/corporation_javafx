@@ -1,7 +1,11 @@
 package org.example.corporation;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+
+import java.io.IOException;
 
 public class MainController {
     @FXML
@@ -12,7 +16,8 @@ public class MainController {
     }
 
     @FXML
-    private void showEmployeeForm() {
+    private void showAddEmployeeForm() {
+        loadView("views/employee_form.fxml");
     }
 
     @FXML
@@ -29,5 +34,17 @@ public class MainController {
 
     @FXML
     private void showExportDialog() {
+    }
+
+    private void loadView(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent view = loader.load();
+            contentPane.getChildren().clear();
+            contentPane.getChildren().setAll(view);
+        } catch (IOException e) {
+//            e.printStackTrace();
+            throw new RuntimeException("Failed to load FXML: " + fxmlPath, e);
+        }
     }
 }
