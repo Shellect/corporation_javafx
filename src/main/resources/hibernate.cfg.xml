@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibrnate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings postgres -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/corporation_db</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password"></property>
+
+        <!-- Настройки подключения к MS SQL Server -->
+<!--        <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>-->
+<!--        <property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=your_database;encrypt=true;trustServerCertificate=true;</property>-->
+<!--        <property name="connection.username">your_username</property>-->
+<!--        <property name="connection.password">your_password</property>-->
+
+        <!-- JDBC connection pool (built-in) -->
+        <property name="connection.pool.size">1</property>
+
+        <!-- SQL dialect для Postgres  -->
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <!-- SQL диалект для MS SQL Server -->
+<!--        <property name="dialect">org.hibernate.dialect.SQLServer2016Dialect</property>-->
+
+        <property name="current_session_context_class">thread</property>
+        <!-- Echo all queries to stdout -->
+        <property name="show_sql">true</property>
+        <!-- Drop and recreate database on startup -->
+        <property name="hbm2ddl.auto">update</property>
+        <!-- Mapping classes -->
+        <mapping class="com.example.corporation.Employee" />
+        <mapping class="com.example.corporation.Position" />
+        <mapping class="com.example.corporation.Department" />
+    </session-factory>
+</hibernate-configuration>
